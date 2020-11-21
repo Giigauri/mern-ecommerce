@@ -2,10 +2,9 @@ import React from 'react'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+// Components & Screens
 import Header from './components/Header'
 import Footer from './components/Footer'
-
-// Application Screens
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 

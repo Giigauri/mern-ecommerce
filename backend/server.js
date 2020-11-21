@@ -1,12 +1,22 @@
+// Application Servises
 import express from 'express'
 import dotenv from 'dotenv'
-import connectDB from './config/DB.js'
-import Products from './Data/products.js'
 import colors from 'colors'
 import morgan from 'morgan'
 
+// Middlewares
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
+
+// Mongo Connector Function
+import connectDB from './config/DB.js'
+
+// Application Routes
+import productRoutes from './routes/productRoutes.js'
+
+// Dotenv Init
 dotenv.config()
 
+// MongoDB Connection
 connectDB()
 
 const app = express()
@@ -15,15 +25,11 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-app.get('/api/products', (req, res) => {
-    res.json(Products)
-})
+app.use('/api/products', productRoutes)
 
-app.get('/api/products/:id', (req, res) => {
-    const Product = Products.find((p) => p._id === req.params.id)
+app.use(notFound)
 
-    res.json(Product)
-})
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
