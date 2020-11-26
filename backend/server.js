@@ -12,6 +12,7 @@ import connectDB from './config/DB.js'
 
 // Application Routes
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 // Dotenv Init
 dotenv.config()
@@ -25,7 +26,10 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
+app.use(express.json())
+
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 
