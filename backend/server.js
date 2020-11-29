@@ -13,6 +13,7 @@ import connectDB from './config/DB.js'
 // Application Routes
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 
 // Dotenv Init
 dotenv.config()
@@ -30,6 +31,7 @@ app.use(express.json())
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 
 app.use(notFound)
 
